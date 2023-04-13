@@ -1,0 +1,10 @@
+*.aar
+*.apk
+*.dex
+*.flat
+*.idsig
+*.jar
+.redo/
+.vars.rc
+R.java
+config.rc

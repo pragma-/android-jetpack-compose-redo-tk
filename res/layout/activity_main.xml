@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:paddingLeft="16dp"
+  android:paddingRight="16dp"
+  android:orientation="vertical"
+>
+  <RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+  >
+    <RadioButton
+      android:id="@+id/radio_post"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/POST"
+    />
+    <RadioButton
+      android:id="@+id/radio_put"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/PUT"
+    />
+  </RadioGroup>
+  <!--<Button-->
+    <!--android:id="@+id/button_choose_file"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/submit"-->
+  <!--/>-->
+  <Button
+    android:id="@+id/button_submit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/submit"
+  />
+</LinearLayout>
