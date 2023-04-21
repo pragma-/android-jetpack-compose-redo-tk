@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-rm -f .vars.rc R.java
-find . \( -name '*.apk' -o -name '*.dex' -o -name '*.flat' -o -name '*.idsig' -o -name '*.jar' -o -name '*.aar' \) -delete
+rm -f .vars.rc ids.rc all
+find . \( -name '*.apk' -o -name '*.dex' -o -name '*.zip' -o -name '*.idsig' -o -name '*.jar' -o -name '*.aar' \) -delete
+find pkg -name '*.java' -delete

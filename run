@@ -1,0 +1,5 @@
+#!/bin/sh
+package=$(xmllint --xpath "string(/manifest/@package)" AndroidManifest.xml)
+adb install -r -t paste.signed.apk || exit
+#todo: use xpath to find the activity
+adb shell am start -n "$package/.MainActivity"

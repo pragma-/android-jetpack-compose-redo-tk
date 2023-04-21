@@ -4,7 +4,13 @@
 *.flat
 *.idsig
 *.jar
+*.zip
+.dep.*
+.depend.*
 .redo/
+.target.*
 .vars.rc
 R.java
+all
 config.rc
+ids.rc

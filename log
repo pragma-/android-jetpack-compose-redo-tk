@@ -1,0 +1,3 @@
+#!/bin/sh
+package=$(xmllint --xpath "string(/manifest/@package)" AndroidManifest.xml)
+adb logcat -d -e "$package"

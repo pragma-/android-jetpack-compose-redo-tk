@@ -1,25 +1,32 @@
 package ski.kramkow.paste
 
-import android.app.Activity
 import android.os.Bundle
-//import java.net.HttpURLConnection;
-//import java.net.URL;
-//import java.io.OutputStream;
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
-class MainActivity : Activity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        //URL url = new URL("http://192.168.1.32:8000");
-        //HttpURLConnection con = (HttpURLConnection)url.openConnection();
-        //con.setRequestMethod("POST");
-        //con.setRequestProperty("Content-Type", "text/plain");
-        //con.setDoOutput(true);
-        //String data = "This is a test\n";
-        //try(OutputStream os = con.getOutputStream()) {
-            //byte[] block = data.getBytes("utf-8");
-            //os.write(block, 0, block.length);
-            //}
+        setContent {
+            PasteTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    Greeting("World")
+                }
+            }
+        }
     }
+}
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
 }

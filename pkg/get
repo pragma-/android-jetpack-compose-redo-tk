@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -e
+redo-ifchange ../packages.rc ../.vars.rc
+. ../.vars.rc
+. ../packages.rc
+
+set -f
+IFS=:; p=($1); d=(${packages[$1]})
+set +f
+group=${p[0]}
+artifact=${p[1]}
+version=${p[2]}
+packaging=${d[0]}
+repo=${d[1]}
+valid_sum=${d[2]}
+
+hash_file() { sha256sum "$1" 2>/dev/null | cut -d ' ' -f 1; }
+
+if [[ $valid_sum ]] && [[ $(hash_file "$1.$packaging") == "$valid_sum" ]]; then
+	cp "$1.$packaging" "$2"
+	exit
+fi
+
+url=${MAVEN_REPO[$repo]}/${group//.//}/$artifact/$version/$artifact-$version.$packaging
+curl --silent --show-error --fail --output "$2" "$url"
+sum=$(hash_file "$2")
+if [[ $valid_sum ]] && [[ $sum != "$valid_sum" ]]; then
+	printf '%s: checksum mismatch (got: %s)\n' "$pkg" "$sum" >&2
+	rm "$2"
+	exit 1
+fi
+if [[ ! $valid_sum ]]; then
+	printf "sed -i 's/^packages(_[a-z]*){0,1}\\[%s:%s:%s\\]=%s:%s:$/&%s/' packages.rc\n" "$group" "$artifact" "$version" "$packaging" "$repo" "$sum" >&2
+fi
+# vim:ft=bash
